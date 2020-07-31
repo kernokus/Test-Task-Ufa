@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/logotipApp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
+
+<!--    <TextView-->
+<!--        android:id="@+id/label1"-->
+<!--        style="@style/labels"-->
+<!--        android:text="@string/login"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/loginET"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/logotipApp" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/loginET"-->
+<!--        style="@style/inputs"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="text"-->
+<!--        android:maxLength="32"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/label1" />-->
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logotipApp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="5dp"
+            android:hint="@string/login"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/etPassw"-->
+<!--        style="@style/passwords"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="text"-->
+<!--        android:hint="@string/hint_password"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etPassw"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etlog"
+        app:passwordToggleDrawable="@drawable/show_password_icon"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorBlack"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="5dp"
+            android:hint="@string/password"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/checkbox"
+        app:layout_constraintStart_toStartOf="@+id/etPassw"
+        app:layout_constraintTop_toBottomOf="@+id/etPassw" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        style="@style/btnMainStyle"
+        android:text="@string/logIN"
+        app:layout_constraintBottom_toTopOf="@+id/regBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+    </Button>
+
+
+
+    <Button
+        android:id="@+id/regBtn"
+        style="@style/btnMainStyle"
+        android:text="@string/registration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

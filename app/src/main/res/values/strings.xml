@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="checkbox">Remember me</string>
+    <string name="logIN">Log in</string>
+    <string name="registration">Sign up</string>
+    <string name="app_name">Test task</string>
+
+<!--    <string name="three_api">Third API</string>-->
+
+    <string name="digits_lat_num">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-</string>
+    <string name="hint_password">*Password</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="Register">register</string>
+</resources>
