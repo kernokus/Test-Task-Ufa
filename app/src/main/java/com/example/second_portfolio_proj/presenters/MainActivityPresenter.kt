@@ -21,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
+class MainActivityPresenter:MvpPresenter<NasaActivityView>() {
     companion object {
         const val IS_NOT_FIRST="is_not_a_first"
         const val REG="reg"

@@ -12,7 +12,7 @@ import com.example.second_portfolio_proj.MyApplication
 
 import com.example.second_portfolio_proj.module.NetworkModule
 import com.example.second_portfolio_proj.R
-import com.example.second_portfolio_proj.presenters.NasaActivityPresenter
+import com.example.second_portfolio_proj.presenters.MainActivityPresenter
 import com.example.second_portfolio_proj.views.NasaActivityView
 import kotlinx.android.synthetic.main.activity_nasa.*
 
@@ -31,7 +31,7 @@ class MainActivity:MvpAppCompatActivity(), NasaActivityView {
 
 
     @InjectPresenter
-    lateinit var nasaActivityPresenter: NasaActivityPresenter
+    lateinit var nasaActivityPresenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -36,7 +36,7 @@ class WebActivityPresenter: MvpPresenter<WebActivityView>() {
         }
     }
     fun saveState(sp:SharedPreferences,url:String){
-    sp.edit().putString(NasaActivityPresenter.IS_NOT_FIRST,url).apply()
+    sp.edit().putString(MainActivityPresenter.IS_NOT_FIRST,url).apply()
     }
 
 }
