@@ -1,12 +1,14 @@
 package com.example.second_portfolio_proj.presenters
 
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.example.second_portfolio_proj.*
 import com.example.second_portfolio_proj.API.RequestPhpService
 import com.example.second_portfolio_proj.module.NetworkModule
@@ -24,7 +26,6 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
         const val IS_NOT_FIRST="is_not_a_first"
         const val REG="reg"
         const val BaseURL="http://platinum-kaz.ru/"
-        //const val RECEIVED_URL="received_url"
     }
 
     fun goRetrofit(network: NetworkModule, sp: SharedPreferences) {
@@ -39,7 +40,7 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
                     if (phpResponse != null) {
                         viewState.addInView(phpResponse.asdf + phpResponse.qqqq)
 
-                        //phpResponse.url="https://yandex.ru/"
+                        phpResponse.url=null
                         if (phpResponse.url!=null) {
                             sp.edit().putString(IS_NOT_FIRST,phpResponse.url).apply()
                             viewState.goInWebView(phpResponse.url.toString())
@@ -76,9 +77,10 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
         else viewState.goReg()
     }
 
-
-
-
+//    fun showExitDialog(ctx:Context) {
+//        val builder = AlertDialog.Builder(app)
+//
+//    }
 
 
 }

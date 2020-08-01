@@ -4,7 +4,6 @@ import moxy.MvpView
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
-
 @StateStrategyType(value = OneExecutionStateStrategy::class) //разобраться
-interface RegActivityView : MvpView {
+interface RegistrationActivityView :MvpView{
 }

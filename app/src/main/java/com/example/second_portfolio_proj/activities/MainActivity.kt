@@ -1,9 +1,15 @@
 package com.example.second_portfolio_proj.activities
 
 
+import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 import com.example.second_portfolio_proj.MyApplication
 
@@ -18,7 +24,7 @@ import moxy.presenter.InjectPresenter
 import javax.inject.Inject
 
 
-class NasaActivity:MvpAppCompatActivity(), NasaActivityView {
+class MainActivity:MvpAppCompatActivity(), NasaActivityView {
 
     @Inject
     lateinit var network: NetworkModule
@@ -35,12 +41,13 @@ class NasaActivity:MvpAppCompatActivity(), NasaActivityView {
         setContentView(R.layout.activity_nasa)
         (application as MyApplication).getComponent().inject(this)
 
-        if (nasaActivityPresenter.isFirst(sharedPreferences)) {
-                nasaActivityPresenter.goRetrofit(network,sharedPreferences)
-        }
-        else {
-            nasaActivityPresenter.redirect(sharedPreferences)
-        }
+
+            if (nasaActivityPresenter.isFirst(sharedPreferences)) {
+                nasaActivityPresenter.goRetrofit(network, sharedPreferences)
+            } else {
+                nasaActivityPresenter.redirect(sharedPreferences)
+            }
+
     }
 
     override fun addInView(message: String) {
@@ -57,6 +64,19 @@ class NasaActivity:MvpAppCompatActivity(), NasaActivityView {
         val intentReg=Intent(this, RegLogActivity::class.java)
         startActivity(intentReg)
     }
+
+//    override fun onBackPressed() {
+//        val builder = AlertDialog.Builder(this)
+//        builder.setMessage(R.string.questionAboutClose)
+//
+//        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+//            super.onBackPressed()
+//        }
+//        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+//
+//        }
+//        builder.show()
+//    }
 
 
 }

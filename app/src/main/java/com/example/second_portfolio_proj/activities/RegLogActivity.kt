@@ -2,25 +2,34 @@ package com.example.second_portfolio_proj.activities
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
+import android.widget.Toast
+import com.example.second_portfolio_proj.AppDatabase
 import com.example.second_portfolio_proj.MyApplication
 import com.example.second_portfolio_proj.R
-import com.example.second_portfolio_proj.presenters.RegActivityPresenter
-import com.example.second_portfolio_proj.views.RegActivityView
+import com.example.second_portfolio_proj.presenters.RegLogActivityPresenter
+import com.example.second_portfolio_proj.views.RegLogActivityView
 import kotlinx.android.synthetic.main.activity_reg.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import javax.inject.Inject
 
 
-class RegLogActivity:MvpAppCompatActivity(), RegActivityView, View.OnClickListener {
+class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickListener {
     @InjectPresenter
-    lateinit var regActivityPresenter: RegActivityPresenter
+    lateinit var regActivityPresenter: RegLogActivityPresenter
 
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+
+    @Inject
+    lateinit var db: AppDatabase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +47,25 @@ class RegLogActivity:MvpAppCompatActivity(), RegActivityView, View.OnClickListen
             }
             R.id.loginBtn-> {
                 val intentLog= Intent(this, AfterLoginActivity::class.java)
-                startActivity(intentLog)
+                GlobalScope.launch (Dispatchers.IO) {
+                    if (db.userDao()?.getByTwoParams(
+                            login = loginET.text.toString(),
+                            password = passwET.text.toString()
+                        ) != null
+                    ) { //Если есть в базе - авторизуемся
+
+                            startActivity(intentLog)
+
+
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(applicationContext, "You must register", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+
+                }
             }
 
         }
@@ -58,8 +85,8 @@ class RegLogActivity:MvpAppCompatActivity(), RegActivityView, View.OnClickListen
         super.onResume()
         if (regActivityPresenter.isCheckBox(sp = sharedPreferences)) {
             checkBox.isChecked=true
-            loginET.setText(sharedPreferences.getString(RegActivityPresenter.LOGIN,"default"))
-            passwET.setText(sharedPreferences.getString(RegActivityPresenter.PASSWORD,"default"))
+            loginET.setText(sharedPreferences.getString(RegLogActivityPresenter.LOGIN,"default"))
+            passwET.setText(sharedPreferences.getString(RegLogActivityPresenter.PASSWORD,"default"))
         }
     }
 

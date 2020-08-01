@@ -1,12 +1,10 @@
 package com.example.second_portfolio_proj.presenters
 
 import android.content.SharedPreferences
-import com.example.second_portfolio_proj.views.NasaActivityView
-import com.example.second_portfolio_proj.views.RegActivityView
+import com.example.second_portfolio_proj.views.RegLogActivityView
 import moxy.MvpPresenter
-import moxy.presenter.InjectPresenter
 
-class RegActivityPresenter: MvpPresenter<RegActivityView>() {
+class RegLogActivityPresenter: MvpPresenter<RegLogActivityView>() {
     companion object {
         const val PASSWORD="password"
         const val LOGIN="login"
