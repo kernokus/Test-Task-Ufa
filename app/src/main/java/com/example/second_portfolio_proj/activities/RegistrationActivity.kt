@@ -2,17 +2,14 @@ package com.example.second_portfolio_proj.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+
 import android.widget.Toast
 import com.example.second_portfolio_proj.AppDatabase
 import com.example.second_portfolio_proj.MyApplication
 import com.example.second_portfolio_proj.R
 import com.example.second_portfolio_proj.User
-import com.example.second_portfolio_proj.module.NetworkModule
-import com.example.second_portfolio_proj.presenters.RegLogActivityPresenter
 import com.example.second_portfolio_proj.presenters.RegistrActivityPresenter
 import com.example.second_portfolio_proj.views.RegistrationActivityView
-import kotlinx.android.synthetic.main.activity_reg.*
 import kotlinx.android.synthetic.main.activity_reg.regBtn
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.coroutines.*
@@ -47,19 +44,12 @@ class RegistrationActivity:MvpAppCompatActivity(),RegistrationActivityView {
 
 
                }
-
-
-
             }
             else {
                 Toast.makeText(applicationContext, R.string.needToFillAll, Toast.LENGTH_SHORT).show()
             }
 
         }
-
-
-
-
     }
 
 

@@ -2,9 +2,7 @@ package com.example.second_portfolio_proj.activities
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import android.net.http.SslCertificate.saveState
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.example.second_portfolio_proj.MyApplication
 import com.example.second_portfolio_proj.R
 import com.example.second_portfolio_proj.presenters.WebActivityPresenter
@@ -36,17 +34,8 @@ class WebViewActivity: MvpAppCompatActivity(), WebActivityView {
         if (savedInstanceState!=null){
             webView.restoreState(savedInstanceState.getBundle(ROTATION))
         } else {
-
-
-
-
-
-
-
         val temp=intent.getStringExtra("URL")
-
         webView.loadUrl(temp)
-
         }
     }
     override fun onBackPressed() {
@@ -69,10 +58,6 @@ class WebViewActivity: MvpAppCompatActivity(), WebActivityView {
     override fun onStop() {
         super.onStop()
         webActivityPresenter.saveState(sharedPreferences,webView.url)
-        //val bundle:Bundle= Bundle()
-       // webView.saveState(bundle)
-        //onSaveInstanceState(bundle)
-
     }
 
 

@@ -39,7 +39,6 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
                     val phpResponse: ScriptPOJO? = response.body()
                     if (phpResponse != null) {
                         viewState.addInView(phpResponse.asdf + phpResponse.qqqq)
-
                         phpResponse.url=null
                         if (phpResponse.url!=null) {
                             sp.edit().putString(IS_NOT_FIRST,phpResponse.url).apply()
@@ -51,15 +50,11 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
                         }
                     }
                 }
-
                 override fun onFailure(call: Call<ScriptPOJO>, t: Throwable) {
-
+                //TODO обработать неудачный запрос
                 }
             })
         }
-
-
-
     }
 
 
@@ -77,10 +72,6 @@ class NasaActivityPresenter:MvpPresenter<NasaActivityView>() {
         else viewState.goReg()
     }
 
-//    fun showExitDialog(ctx:Context) {
-//        val builder = AlertDialog.Builder(app)
-//
-//    }
 
 
 }

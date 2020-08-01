@@ -1,15 +1,12 @@
 package com.example.second_portfolio_proj.activities
 
 
-import android.Manifest
+
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+
 
 import com.example.second_portfolio_proj.MyApplication
 
@@ -65,18 +62,18 @@ class MainActivity:MvpAppCompatActivity(), NasaActivityView {
         startActivity(intentReg)
     }
 
-//    override fun onBackPressed() {
-//        val builder = AlertDialog.Builder(this)
-//        builder.setMessage(R.string.questionAboutClose)
-//
-//        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-//            super.onBackPressed()
-//        }
-//        builder.setNegativeButton(android.R.string.no) { dialog, which ->
-//
-//        }
-//        builder.show()
-//    }
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(R.string.questionAboutClose)
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            super.onBackPressed()
+        }
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+        }
+        builder.show()
+    }
 
 
 }

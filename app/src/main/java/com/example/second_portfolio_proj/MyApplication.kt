@@ -16,10 +16,10 @@ class MyApplication:Application() {
         super.onCreate()
           appComponent = createComponent()
 
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
-        intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION)
-        this.registerReceiver(networkReceiver,intentFilter)
+       // val intentFilter = IntentFilter()
+        //intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
+        //intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION)
+            //this.registerReceiver(networkReceiver,intentFilter)
     }
 
      private fun createComponent(): AppComponent {
@@ -36,6 +36,6 @@ class MyApplication:Application() {
 
     override fun onTerminate() {
         super.onTerminate()
-        unregisterReceiver(networkReceiver)
+        //unregisterReceiver(networkReceiver)
     }
 }
