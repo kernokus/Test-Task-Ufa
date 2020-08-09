@@ -8,6 +8,7 @@ import com.example.second_portfolio_proj.activities.WebViewActivity
 import com.example.second_portfolio_proj.module.RetrofitModule
 import com.example.second_portfolio_proj.module.RoomModule
 import com.example.second_portfolio_proj.module.SPModule
+import com.example.second_portfolio_proj.presenters.RegLogActivityPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,6 +19,8 @@ interface AppComponent {
     fun inject(webViewActivity: WebViewActivity)
     fun inject(regLogActivity: RegLogActivity)
     fun inject(registrationActivity: RegistrationActivity)
+    fun inject(regLogActivityPresenter: RegLogActivityPresenter)
+
 
 
 

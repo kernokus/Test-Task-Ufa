@@ -2,15 +2,19 @@ package com.example.second_portfolio_proj.presenters
 
 import android.content.SharedPreferences
 import com.example.second_portfolio_proj.views.RegLogActivityView
+import moxy.InjectViewState
 import moxy.MvpPresenter
+import javax.inject.Inject
+    @InjectViewState
+    class RegLogActivityPresenter : MvpPresenter<RegLogActivityView>() {
 
-class RegLogActivityPresenter: MvpPresenter<RegLogActivityView>() {
-    companion object {
+        @Inject
+        lateinit var sp: SharedPreferences
+
+        companion object {
         const val PASSWORD="password"
         const val LOGIN="login"
         const val IS_CHECK_BOX="is check box"
-
-
     }
 
     fun saveLogAndPassw(sp:SharedPreferences,login:String,password:String,isCheckBox:Boolean) {

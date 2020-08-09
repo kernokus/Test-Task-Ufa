@@ -2,20 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/logotipApp"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </ImageView>
-
-<!--    <TextView-->
+    <!--    <TextView-->
 <!--        android:id="@+id/label1"-->
 <!--        style="@style/labels"-->
 <!--        android:text="@string/login"-->

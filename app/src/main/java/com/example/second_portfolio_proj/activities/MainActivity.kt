@@ -40,7 +40,9 @@ class MainActivity:MvpAppCompatActivity(), NasaActivityView {
 
 
             if (nasaActivityPresenter.isFirst(sharedPreferences)) {
-                nasaActivityPresenter.goRetrofit(network, sharedPreferences)
+           //     nasaActivityPresenter.goRetrofit(network, sharedPreferences)
+                nasaActivityPresenter.goNetw2(sharedPreferences)
+                nasaActivityPresenter.goNetw2(sharedPreferences)
             } else {
                 nasaActivityPresenter.redirect(sharedPreferences)
             }

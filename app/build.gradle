@@ -9,13 +9,14 @@ android {
 
     defaultConfig {
         applicationId "com.example.second_portfolio_proj"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    useLibrary 'org.apache.http.legacy'
 
     buildTypes {
         release {
@@ -74,6 +75,12 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:1.1.1"
 
     implementation "androidx.room:room-ktx:2.2.5"
+
+   // implementation "com.github.moxy-community:moxy-ktx:2.1.2"
+    implementation 'com.android.volley:volley:1.1.1'
+
+    compile 'com.squareup.okhttp3:okhttp:2.4.1'
+
 
 
 }

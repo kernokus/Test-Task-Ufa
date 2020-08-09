@@ -1,8 +1,10 @@
 package com.example.second_portfolio_proj.activities
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.second_portfolio_proj.AppDatabase
 import com.example.second_portfolio_proj.MyApplication
@@ -19,7 +21,7 @@ import moxy.presenter.InjectPresenter
 import javax.inject.Inject
 
 
-class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickListener {
+class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickListener,View.OnFocusChangeListener {
     @InjectPresenter
     lateinit var regActivityPresenter: RegLogActivityPresenter
 
@@ -37,6 +39,11 @@ class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickLis
         (application as MyApplication).getComponent().inject(this)
         regBtn.setOnClickListener(this)
         loginBtn.setOnClickListener(this)
+
+
+        loginET.onFocusChangeListener = this
+        passwET.onFocusChangeListener = this
+
     }
 
     override fun onClick(v: View?) {
@@ -67,7 +74,6 @@ class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickLis
 
                 }
             }
-
         }
     }
 
@@ -87,6 +93,21 @@ class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickLis
             checkBox.isChecked=true
             loginET.setText(sharedPreferences.getString(RegLogActivityPresenter.LOGIN,"default"))
             passwET.setText(sharedPreferences.getString(RegLogActivityPresenter.PASSWORD,"default"))
+        }
+    }
+
+
+    private fun hideKeyboard(view: View) {
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        if(v?.id==R.id.loginET || v?.id==R.id.passwET) {
+            if (!hasFocus) {
+                hideKeyboard(v)
+            }
         }
     }
 
