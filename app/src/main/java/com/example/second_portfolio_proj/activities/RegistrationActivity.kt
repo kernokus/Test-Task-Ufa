@@ -40,12 +40,22 @@ class RegistrationActivity:MvpAppCompatActivity(),RegistrationActivityView {
                            Toast.makeText(applicationContext, "Successfully", Toast.LENGTH_SHORT).show()
                        }
                    }
-                   else Toast.makeText(applicationContext, "Not successfully", Toast.LENGTH_SHORT).show()
+
+                   else {
+                       withContext(Dispatchers.Main) {
+                           Toast.makeText(
+                               applicationContext,
+                               "Not successfully",
+                               Toast.LENGTH_SHORT
+                           ).show()
+                       }
+                   }
 
 
                }
             }
             else {
+
                 Toast.makeText(applicationContext, R.string.needToFillAll, Toast.LENGTH_SHORT).show()
             }
 
