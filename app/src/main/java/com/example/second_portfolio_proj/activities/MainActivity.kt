@@ -40,8 +40,8 @@ class MainActivity:MvpAppCompatActivity(), NasaActivityView {
 
 
             if (nasaActivityPresenter.isFirst(sharedPreferences)) {
-           //     nasaActivityPresenter.goRetrofit(network, sharedPreferences)
-                nasaActivityPresenter.goNetw2(sharedPreferences)
+                nasaActivityPresenter.goRetrofit(network, sharedPreferences)
+                //nasaActivityPresenter.goNetw2(sharedPreferences)
                 nasaActivityPresenter.goNetw2(sharedPreferences)
             } else {
                 nasaActivityPresenter.redirect(sharedPreferences)
@@ -54,6 +54,7 @@ class MainActivity:MvpAppCompatActivity(), NasaActivityView {
     }
 
     override fun goInWebView(url: String) { //перенаправляет на WebView
+        //var url2="https:\/\/loveeto.ru\/v2\/'"
         val intentWeb=Intent(this, WebViewActivity::class.java)
         intentWeb.putExtra("URL",url)
         startActivity(intentWeb)

