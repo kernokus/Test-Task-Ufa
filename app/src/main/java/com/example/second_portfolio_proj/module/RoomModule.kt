@@ -15,7 +15,6 @@ class RoomModule (_context:Context) {
     private var context=_context
 
 
-
     @Singleton
     @Provides
     fun provideRoomDatabase(ctx:Context): AppDatabase {

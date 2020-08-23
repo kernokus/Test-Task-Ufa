@@ -21,7 +21,7 @@ dependencies {
     implementation "com.github.moxy-community:moxy-app-compat:2.1.2"
 
     //сеть
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
     //dagger 2
@@ -32,26 +32,14 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
     //пикассо
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-
     implementation 'androidx.preference:preference:1.1.1'
-
-
-
     implementation 'com.google.android.material:material:1.3.0-alpha02'
-
     //room
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-
-    implementation "androidx.room:room-ktx:2.2.5"
-
-    // implementation "com.github.moxy-community:moxy-ktx:2.1.2"
-    implementation 'com.android.volley:volley:1.1.1'
-
-    //compile 'com.squareup.okhttp3:okhttp:2.4.1'
-
-
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+    //Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
 
 }
 

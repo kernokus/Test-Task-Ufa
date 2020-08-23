@@ -6,16 +6,12 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-
-
 import com.example.second_portfolio_proj.MyApplication
-
 import com.example.second_portfolio_proj.module.NetworkModule
 import com.example.second_portfolio_proj.R
 import com.example.second_portfolio_proj.presenters.MainActivityPresenter
 import com.example.second_portfolio_proj.views.NasaActivityView
 import kotlinx.android.synthetic.main.activity_nasa.*
-
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import javax.inject.Inject

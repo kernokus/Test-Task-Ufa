@@ -1,6 +1,5 @@
 package com.example.second_portfolio_proj.module
 
-import com.example.second_portfolio_proj.module.NetworkModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

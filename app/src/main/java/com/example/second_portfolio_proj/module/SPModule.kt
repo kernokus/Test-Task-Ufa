@@ -12,8 +12,6 @@ import javax.inject.Singleton
 class SPModule (_context:Context){
     private var context=_context
 
-
-
     @Singleton
     @Provides
     fun provideContext(): Context {

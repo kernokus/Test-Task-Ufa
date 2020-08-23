@@ -12,19 +12,18 @@ import com.example.second_portfolio_proj.R
 import com.example.second_portfolio_proj.presenters.RegLogActivityPresenter
 import com.example.second_portfolio_proj.views.RegLogActivityView
 import kotlinx.android.synthetic.main.activity_reg.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 
-class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickListener,View.OnFocusChangeListener {
+class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickListener,View.OnFocusChangeListener ,CoroutineScope{
     @InjectPresenter
     lateinit var regActivityPresenter: RegLogActivityPresenter
 
+    override val coroutineContext: CoroutineContext = SupervisorJob() +Dispatchers.Main.immediate
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -54,24 +53,19 @@ class RegLogActivity:MvpAppCompatActivity(), RegLogActivityView, View.OnClickLis
             }
             R.id.loginBtn-> {
                 val intentLog= Intent(this, AfterLoginActivity::class.java)
-                GlobalScope.launch (Dispatchers.IO) {
+                launch  {
                     if (db.userDao()?.getByTwoParams(
                             login = loginET.text.toString(),
                             password = passwET.text.toString()
                         ) != null
                     ) { //Если есть в базе - авторизуемся
-
                             startActivity(intentLog)
-
-
                     } else {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(applicationContext, "You must register", Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }
-
-
                 }
             }
         }

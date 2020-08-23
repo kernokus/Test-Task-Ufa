@@ -6,10 +6,7 @@ import com.example.second_portfolio_proj.API.RequestPhpService
 import com.example.second_portfolio_proj.ScriptPOJO
 import com.example.second_portfolio_proj.module.NetworkModule
 import com.example.second_portfolio_proj.views.NasaActivityView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import moxy.MvpPresenter
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -19,28 +16,25 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.coroutines.CoroutineContext
 
 
-class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
+class MainActivityPresenter: MvpPresenter<NasaActivityView>(),CoroutineScope
 {
     companion object {
         const val IS_NOT_FIRST="is_not_a_first"
         const val REG="reg"
         const val BaseURL="http://platinum-kaz.ru/"
     }
+    override val coroutineContext: CoroutineContext = SupervisorJob() +Dispatchers.Main.immediate
 
     fun goRetrofit(network: NetworkModule, sp: SharedPreferences) {
-        CoroutineScope(Dispatchers.IO).launch { //TODO переделать
+        launch { //TODO переделать
             val service = network.getRetrofit(BaseURL).create(
                 RequestPhpService::class.java
             )
-            val call = service.getScriptInfo()
-            call.enqueue(object : Callback<ScriptPOJO> {
-                override fun onResponse(call: Call<ScriptPOJO>, response: Response<ScriptPOJO>) {
-                    val phpResponse: ScriptPOJO? = response.body()
-                    if (phpResponse != null) {
-                        //viewState.addInView(phpResponse.asdf + phpResponse.qqqq)
-                        //phpResponse.url="https://yandex.ru/"
+            val phpResponse = service.getScriptInfo()
+                        phpResponse.url=null //заменю на другой для теста
                         Log.d("key",phpResponse.url.toString())
                         if (phpResponse.url!=null) {
                             sp.edit().putString(IS_NOT_FIRST,phpResponse.url).apply()
@@ -52,12 +46,8 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
                         }
                     }
                 }
-                override fun onFailure(call: Call<ScriptPOJO>, t: Throwable) {
-                //TODO обработать неудачный запрос
-                }
-            })
-        }
-    }
+
+
 
 
 
@@ -67,7 +57,6 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
             withContext(Dispatchers.Main){
             var answer= temp?.substringAfter("\"url\":\"")
                 answer = answer?.substring(0,answer.length - 2)
-                Log.i("jopa",answer)
             //answer=null //как будто url нет в скрипте
             if (answer.equals("null") || answer==null) {
                 sp.edit().putString(IS_NOT_FIRST, REG).apply()
@@ -76,30 +65,15 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
             else {
                 sp.edit().putString(IS_NOT_FIRST,answer).apply()
                 viewState.goInWebView(answer.toString()) //костыль
-
             }
             }
-
-
-
-
-
-
-
-
-
-
-
-//            Log.d("jopa",answer)
         }
     }
 
 
-    fun doGet(url: String?): String? {
+    private fun doGet(url: String?): String? {
         val obj = URL(url)
         val connection: HttpURLConnection = obj.openConnection() as HttpURLConnection
-
-        //add reuqest header
         connection.setRequestMethod("GET")
         connection.setRequestProperty("User-Agent", "Mozilla/5.0")
         connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5")
@@ -112,9 +86,6 @@ class MainActivityPresenter:MvpPresenter<NasaActivityView> ()
             response.append(inputLine)
         }
         bufferedReader.close()
-
-//      print result
-        //Log.d(TAG, "Response string: $response")
         return response.toString()
     }
 

@@ -16,10 +16,11 @@ import kotlinx.coroutines.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class RegistrationActivity:MvpAppCompatActivity(),RegistrationActivityView {
+class RegistrationActivity:MvpAppCompatActivity(),RegistrationActivityView,CoroutineScope {
 
-
+    override val coroutineContext: CoroutineContext = SupervisorJob() +Dispatchers.Main.immediate
     @Inject
     lateinit var db: AppDatabase
 
@@ -32,30 +33,15 @@ class RegistrationActivity:MvpAppCompatActivity(),RegistrationActivityView {
         (application as MyApplication).getComponent().inject(this)
         regBtn.setOnClickListener {
             if (isFieldsAreFill()) { //TODO вынести в презентер!!!
-               GlobalScope.launch (Dispatchers.IO){
+              launch {
                    db.userDao()?.insert(getUserInfoFields())
                    if (db.userDao()?.getByParams(Name.text.toString(),login.text.toString(),SecName.text.toString(),Passw.text.toString()) !=null) {
                        Log.i("DATABASE",db.userDao()?.getAll().toString())
-                       withContext(Dispatchers.Main){
-                           Toast.makeText(applicationContext, "Successfully", Toast.LENGTH_SHORT).show()
-                       }
+                       Toast.makeText(applicationContext, "Successfully", Toast.LENGTH_SHORT).show()
                    }
-
-                   else {
-                       withContext(Dispatchers.Main) {
-                           Toast.makeText(
-                               applicationContext,
-                               "Not successfully",
-                               Toast.LENGTH_SHORT
-                           ).show()
-                       }
-                   }
-
-
                }
             }
             else {
-
                 Toast.makeText(applicationContext, R.string.needToFillAll, Toast.LENGTH_SHORT).show()
             }
 

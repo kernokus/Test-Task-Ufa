@@ -26,8 +26,6 @@ import javax.inject.Inject
 class WebViewActivity: MvpAppCompatActivity(), WebActivityView {
     companion object{
         const val ROTATION="rotation"
-        private var mUploadMessage: ValueCallback<Uri>? = null
-        var uploadMessage: ValueCallback<Array<Uri>>? = null
         const val REQUEST_SELECT_FILE = 100
         private const val FILECHOOSER_RESULTCODE = 1
     }
